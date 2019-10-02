@@ -1,18 +1,38 @@
-""""""""""""""""""""""""""first step"""""""""""""""""""""""""""""
+""""""""""""""""""""""""""First Step""""""""""""""""""""""""""
 
-" apt update
-" apt upgrade
-" apt install vim git ctags
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" git clone https://github.com/tomasr/molokai.git ~/.vim/bundle
-" mkdir ~/.vim/colors
-" mv ~/.vim/bundle/molokai/color/molokai.vim ~/.vim/colors
-" git clone https://github.com/oliver-zeng/vim.git ~/.vim
-" mv ~/.vim/vim/.vimrc ~/.vimrc
-" vi ~/.vimrc
-" :PluginInstall
+" $ apt update
+" $ apt upgrade
+" $ apt install vim git ctags
+" $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" $ git clone https://github.com/tomasr/molokai.git ~/.vim/bundle
+" $ mkdir ~/.vim/colors
+" $ mv ~/.vim/bundle/molokai/color/molokai.vim ~/.vim/colors
+" $ git clone https://github.com/oliver-zeng/vim.git ~/.vim
+" $ mv ~/.vim/vim/.vimrc ~/.vimrc
+" $ vi ~/.vimrc
+" $ :PluginInstall
 
-"""""""""""""""""""""""""ctags & taglist"""""""""""""""""""""""""
+""""""""""""""""""""""""""""Git Usage"""""""""""""""""""""""""
+
+" $ apt install openssh
+
+" // check by vi ~/.gitconfig
+" $ git config --global user.name "xx"
+" $ git config --global user.email "yy@qq.com"
+
+" // path -> key -> key
+" $ ssh-keygen -t rsa -C "yy@qq.com"
+
+" // copy ~/.ssh/id_rsa.pub to "github -> settings -> ssh and gpg keys"
+
+" // get new_rep name by "github -> new repository"
+" $ git init
+" $ git add README.md
+" $ git commit -m "first commit"
+" $ git remote add origin https://github.com/oliver-zeng/new_repo.git
+" $ git push -u origin master
+
+"""""""""""""""""""""""""Ctags & Taglist""""""""""""""""""""""
 
 " auto find tags path -> not work
 set tags+=./tags
@@ -37,7 +57,7 @@ function! UpdateCtags()
 endfunction
 autocmd BufWritePost *.c,*.h,*.cpp silent call UpdateCtags() | TlistUpdate
 
-""""""""""""""""""""""""My Default Configs"""""""""""""""""""""""
+""""""""""""""""""""""""My Default Configs""""""""""""""""""""
 
 colorscheme molokai
 set cursorline
@@ -55,7 +75,7 @@ set ignorecase
 " set line number
 set nu
 
-"""""""""""""""""""""""""My Binding Key""""""""""""""""""""""""""
+"""""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
 " better motion (by remap easymotion key)
 map ' <Plug>(easymotion-s)
@@ -88,7 +108,7 @@ nnoremap <C-l> <C-w><Right>
 " better delete
 vnoremap x "_x
 
-"""""""""""""""""""""""""""better remind"""""""""""""""""""""""""
+"""""""""""""""""""""""""""Better Remind""""""""""""""""""""""
 
 " Default Complete
 " <c-n>
@@ -113,7 +133,7 @@ vnoremap x "_x
 " :vsp      - vertical split
 " :tabnew   - new tab split
 
-"""""""""""""""""""""""""""""""vundle""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""
 
 set nocompatible
 filetype off
