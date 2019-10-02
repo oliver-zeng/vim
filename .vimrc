@@ -4,10 +4,11 @@
 " apt upgrade
 " apt install vim git ctags
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" git clone https://github.com/tomasr/molokai.git
+" git clone https://github.com/tomasr/molokai.git ~/.vim/bundle
 " mkdir ~/.vim/colors
 " mv ~/.vim/bundle/molokai/color/molokai.vim ~/.vim/colors
-" copy .vimrc from https://github.com/oliver-zeng/vim.git to ~/.vimrc
+" git clone https://github.com/oliver-zeng/vim.git ~/.vim
+" mv ~/.vim/vim/.vimrc ~/.vimrc
 " vi ~/.vimrc
 " :PluginInstall
 
