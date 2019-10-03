@@ -12,26 +12,6 @@
 " $ vi ~/.vimrc
 " $ :PluginInstall
 
-""""""""""""""""""""""""""""Git Usage"""""""""""""""""""""""""
-
-" $ apt install openssh
-
-" // check by vi ~/.gitconfig
-" $ git config --global user.name "xx"
-" $ git config --global user.email "yy@qq.com"
-
-" // path -> key -> key
-" $ ssh-keygen -t rsa -C "yy@qq.com"
-
-" // copy ~/.ssh/id_rsa.pub to "github -> settings -> ssh and gpg keys"
-
-" // get new_rep name by "github -> new repository"
-" $ git init
-" $ git add README.md
-" $ git commit -m "first commit"
-" $ git remote add origin https://github.com/oliver-zeng/new_repo.git
-" $ git push -u origin master
-
 """""""""""""""""""""""""Ctags & Taglist""""""""""""""""""""""
 
 " auto find tags path -> not work
@@ -74,6 +54,10 @@ set hlsearch
 set ignorecase
 " set line number
 set nu
+" vim encoding
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030
+set termencoding=utf-8
 
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
