@@ -62,17 +62,27 @@ set termencoding=utf-8
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
 " better motion (by remap easymotion key)
-map ' <Plug>(easymotion-s)
+map <space>j <Plug>(easymotion-w)
+map <space>k <Plug>(easymotion-b)
+map w <Plug>(easymotion-lineforward)
+map b <Plug>(easymotion-linebackward)
 
 " easy comment (by NERDCommenter)
 vmap / <plug>NERDCommenterToggle
 
 " better search (by remap vimgrep)
-nnoremap gd :vimgrep /<c-r>=expand("<cword>")<cr>/jg %<cr> \| :copen<cr>
+" j     - do not jump to first match postion
+" g     - show more result for multiple match within one line
+" %     - current file
+" *     - current dir
+" **    - current dir & sub dir
+" **/*  - sub dir
 nnoremap q :cclose<cr>
-nnoremap gq :copen<cr>
-nnoremap gf :vimgrep /<c-r>:/ **<cr> \| :copen<cr>
-set switchbuf+=newtab
+nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj %<cr> \| :copen<cr>
+nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//gj %<cr>
+"nnoremap gf /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj **<cr> \| :copen<cr>
+"nnoremap gq :copen<cr>
+"set switchbuf+=newtab
 
 " better ESC
 inoremap jk <Esc>
