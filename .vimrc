@@ -131,12 +131,20 @@ vnoremap x "_x
 " :tabnew   - new tab split
 
 """""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""
+
+" git ssh clang python3 vim-python cmake build-essential
+" vim --version | grep python
+" python3 install.py --system-libclang --clangd-completer --clang-completer
+" 根据自己需求自己加选项
+" ( python3 install.py --all )
+
+" ycm 指定 ycm_extra_conf.py
+" add include path to ycm_extra_conf.py
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+
 "disable ycm 语法检查
 "let g:ycm_enable_diagnostic_signs = 0
 "let g:ycm_enable_diagnostic_highlighting = 0
-
-" ycm 指定 ycm_extra_conf.py
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 """""""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""
 
