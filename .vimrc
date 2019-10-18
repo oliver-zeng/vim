@@ -39,22 +39,26 @@ autocmd BufWritePost *.c,*.h,*.cpp silent call UpdateCtags() | TlistUpdate
 
 """"""""""""""""""""""""My Default Configs""""""""""""""""""""
 
+" set color theme
 colorscheme molokai
+" set clipboard as default register
+set clipboard=unnamedplus
+" high light cursor
 set cursorline
 set cursorcolumn
-" adjust the width of Tab 
 " show Tab as >-, Trail Space as -
+set list listchars=tab:>-,trail:-
+" adjust the width of Tab
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set list listchars=tab:>-,trail:-
 " set search highlight
 set hlsearch
 " set search ignore case
 set ignorecase
 " set line number
 set nu
-" vim encoding
+" support Chinese
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030
 set termencoding=utf-8
@@ -80,9 +84,8 @@ vmap / <plug>NERDCommenterToggle
 nnoremap q :cclose<cr>
 nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj %<cr> \| :copen<cr>
 nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//gj %<cr>
-"nnoremap gf /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj **<cr> \| :copen<cr>
-"nnoremap gq :copen<cr>
-"set switchbuf+=newtab
+nnoremap gf :vimgrep /<c-r>//gj **<cr> \| :copen<cr>
+set switchbuf+=newtab
 
 " better ESC
 inoremap jk <Esc>
@@ -146,8 +149,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 " easy comment
 Plugin 'scrooloose/nerdcommenter'
-" easy vi
+" easy shuffle files
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 " navigatoer
 Plugin 'taglist.vim'
 
