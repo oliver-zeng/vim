@@ -104,6 +104,7 @@ nnoremap <C-l> <C-w><Right>
 
 " better delete
 vnoremap x "_x
+nnoremap x "_x
 
 """""""""""""""""""""""""""Better Remind""""""""""""""""""""""
 
