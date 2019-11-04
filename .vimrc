@@ -38,6 +38,46 @@ endfunction
 autocmd BufWritePost *.c,*.h,*.cpp silent call UpdateCtags() | TlistUpdate
 
 """"""""""""""""""""""""My Default Configs""""""""""""""""""""
+" set status line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Here begins my automated wordcount addition.
+" This combines several ideas from:
+" http://stackoverflow.com/questions/114431/fast-word-count-function-in-vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:word_count="<unknown>"
+function WordCount()
+    return g:word_count
+endfunction
+function UpdateWordCount()
+    let lnum = 1
+    let n = 0
+    while lnum <= line('$')
+        let n = n + len(split(getline(lnum)))
+        let lnum = lnum + 1
+    endwhile
+    let g:word_count = n
+endfunction
+" Update the count when cursor is idle in command or insert mode.
+" Update when idle for 1000 msec (default is 4000 msec).
+set updatetime=1000
+augroup WordCounter
+au! CursorHold,CursorHoldI * call UpdateWordCount()
+augroup END
+" Set statusline, shown here a piece at a time
+highlight User1 ctermbg=green guibg=green ctermfg=black guifg=black
+" Switch to User1 color highlight
+"set statusline=%1*
+" file name, cut if needed at start
+set statusline+=%<%F
+set statusline+=%M" modified flag
+" file type
+"set statusline+=%y
+" separator from left to right justified
+set statusline+=%=
+set statusline+=\ total\ %{WordCount()}\ words,
+" percentage through the file
+set statusline+=\ %l/%L\ lines,\ %P
+set laststatus=2
 
 " set color theme
 colorscheme molokai
@@ -66,8 +106,9 @@ set termencoding=utf-8
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
 " better motion (by remap easymotion key)
-map <space>j <Plug>(easymotion-w)
-map <space>k <Plug>(easymotion-b)
+"map <space>j <Plug>(easymotion-w)
+"map <space>k <Plug>(easymotion-b)
+map <space> <Plug>(easymotion-s)
 map w <Plug>(easymotion-lineforward)
 map b <Plug>(easymotion-linebackward)
 
