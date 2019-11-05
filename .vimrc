@@ -37,13 +37,8 @@ function! UpdateCtags()
 endfunction
 autocmd BufWritePost *.c,*.h,*.cpp silent call UpdateCtags() | TlistUpdate
 
-""""""""""""""""""""""""My Default Configs""""""""""""""""""""
-" set status line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Here begins my automated wordcount addition.
-" This combines several ideas from:
-" http://stackoverflow.com/questions/114431/fast-word-count-function-in-vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""status line"""""""""""""
+
 let g:word_count="<unknown>"
 function WordCount()
     return g:word_count
@@ -79,6 +74,7 @@ set statusline+=\ total\ %{WordCount()}\ words,
 set statusline+=\ %l/%L\ lines,\ %P
 set laststatus=2
 
+""""""""""""""""""""""""My Default Configs""""""""""""""""""""
 " set color theme
 colorscheme molokai
 " set clipboard as default register
@@ -136,6 +132,10 @@ nnoremap U <C-r>
 
 " better vi (by nerdtree)
 nnoremap f :NERDTreeToggle<CR>
+autocmd BufEnter * lcd %:p:h
+
+" disable auto create .swap file
+set noswapfile
 
 " better window move
 nnoremap <C-h> <C-w><Left>
