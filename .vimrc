@@ -170,7 +170,7 @@ nnoremap x "_x
 " Split Window
 " :sp       - horizonal split
 " :vsp      - vertical split
-" :tabnew   - new tab split
+" :tabe     - new tab split
 
 """""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""
 
