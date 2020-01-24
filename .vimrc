@@ -81,7 +81,6 @@ colorscheme molokai
 set clipboard=unnamedplus
 " high light cursor
 set cursorline
-set cursorcolumn
 " show Tab as >-, Trail Space as -
 set list listchars=tab:>-,trail:-
 " adjust the width of Tab
@@ -122,7 +121,7 @@ nnoremap q :cclose<cr>
 nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj %<cr> \| :copen<cr>
 nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//gj %<cr>
 nnoremap gf :vimgrep /<c-r>//gj **<cr> \| :copen<cr>
-set switchbuf+=newtab
+"set switchbuf+=newtab
 
 " better ESC
 inoremap jk <Esc>
@@ -138,10 +137,10 @@ autocmd BufEnter * lcd %:p:h
 set noswapfile
 
 " better window move
-nnoremap <C-h> <C-w><Left>
-nnoremap <C-j> <C-w><Down>
-nnoremap <C-k> <C-w><Up>
-nnoremap <C-l> <C-w><Right>
+"nnoremap <C-h> <C-w><Left>
+"nnoremap <C-j> <C-w><Down>
+"nnoremap <C-k> <C-w><Up>
+"nnoremap <C-l> <C-w><Right>
 
 " better delete
 vnoremap x "_x
@@ -170,9 +169,28 @@ nnoremap x "_x
 " Split Window
 " :sp       - horizonal split
 " :vsp      - vertical split
-" :tabe     - new tab split
+" :tabnew   - new tab split
 
-"""""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""
+"""""""""""""""""""""""Vim-EasyComplete""""""""""""""""""""
+imap <Tab>   <Plug>EasyCompTabTrigger
+imap <S-Tab> <Plug>EasyCompShiftTabTrigger
+let g:pmenu_scheme = 'dark'
+
+" minibuf
+let g:miniBufExplMapWindowNavVim = 1 
+"let g:miniBufExplMapWindowNavArrows = 1 
+"let g:miniBufExplMapCTabSwitchBufs = 1 
+
+"let g:miniBufExplMapWindowNavArrows = 1  
+"let g:miniBufExplMapWindowNavVim = 1  
+"let g:miniBufExplMapCTabSwitchWindows = 1  
+""let g:miniBufExplMapCTabSwitchBufs = 1   
+"let g:miniBufExplModSelTarget = 1  
+"解决FileExplorer窗口变小问题  
+"let g:miniBufExplForceSyntaxEnable = 1  
+"let g:miniBufExplorerMoreThanOne=2
+
+""""""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""
 
 " git ssh clang python3 vim-python cmake build-essential
 " vim --version | grep python
@@ -182,7 +200,7 @@ nnoremap x "_x
 
 " ycm 指定 ycm_extra_conf.py
 " add include path to ycm_extra_conf.py
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 "disable ycm 语法检查
 "let g:ycm_enable_diagnostic_signs = 0
@@ -213,7 +231,23 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " navigatoer
 Plugin 'taglist.vim'
 " complete
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
+
+" SnipMate 携带的四个插件
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+" Jedi
+Plugin 'davidhalter/jedi-vim'
+
+" EasyComplete 插件和 Dictionary 词表
+Plugin 'jayli/vim-easycomplete'
+Plugin 'jayli/vim-dictionary'
+
+" minibuf
+Plugin 'minibufexpl.vim'
 
 call vundle#end()
 filetype plugin indent on
