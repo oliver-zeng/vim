@@ -98,6 +98,10 @@ set termencoding=utf-8
 
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
+" fast compile & run
+map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o %< && gdb %<<CR>
+"map <F5> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o %< && ./%<<CR>
+
 " better motion (by remap easymotion key)
 "map <space>j <Plug>(easymotion-w)
 "map <space>k <Plug>(easymotion-b)
@@ -167,34 +171,12 @@ imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 let g:pmenu_scheme = 'dark'
 
 " minibuf
-let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavVim = 1
 "let g:miniBufExplMapWindowNavArrows = 1 
 "let g:miniBufExplMapCTabSwitchBufs = 1 
-
-"let g:miniBufExplMapWindowNavArrows = 1  
-"let g:miniBufExplMapWindowNavVim = 1  
-"let g:miniBufExplMapCTabSwitchWindows = 1  
-""let g:miniBufExplMapCTabSwitchBufs = 1   
-"let g:miniBufExplModSelTarget = 1  
 "解决FileExplorer窗口变小问题  
 "let g:miniBufExplForceSyntaxEnable = 1  
 "let g:miniBufExplorerMoreThanOne=2
-
-""""""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""
-
-" git ssh clang python3 vim-python cmake build-essential
-" vim --version | grep python
-" python3 install.py --system-libclang --clangd-completer --clang-completer
-" 根据自己需求自己加选项
-" ( python3 install.py --all )
-
-" ycm 指定 ycm_extra_conf.py
-" add include path to ycm_extra_conf.py
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-
-"disable ycm 语法检查
-"let g:ycm_enable_diagnostic_signs = 0
-"let g:ycm_enable_diagnostic_highlighting = 0
 
 """""""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""
 
