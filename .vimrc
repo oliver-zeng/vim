@@ -59,10 +59,6 @@ augroup WordCounter
 au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
 " Set statusline, shown here a piece at a time
-highlight User1 ctermbg=green guibg=green ctermfg=black guifg=black
-" Switch to User1 color highlight
-"set statusline=%1*
-" file name, cut if needed at start
 set statusline+=%<%F
 set statusline+=%M" modified flag
 " file type
@@ -93,6 +89,8 @@ set hlsearch
 set ignorecase
 " set line number
 set nu
+" set syntax highlight
+syntax enable
 " support Chinese
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030
@@ -121,7 +119,6 @@ nnoremap q :cclose<cr>
 nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj %<cr> \| :copen<cr>
 nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//gj %<cr>
 nnoremap gf :vimgrep /<c-r>//gj **<cr> \| :copen<cr>
-"set switchbuf+=newtab
 
 " better ESC
 inoremap jk <Esc>
@@ -131,16 +128,9 @@ nnoremap U <C-r>
 
 " better vi (by nerdtree)
 nnoremap f :NERDTreeToggle<CR>
-autocmd BufEnter * lcd %:p:h
 
 " disable auto create .swap file
 set noswapfile
-
-" better window move
-"nnoremap <C-h> <C-w><Left>
-"nnoremap <C-j> <C-w><Down>
-"nnoremap <C-k> <C-w><Up>
-"nnoremap <C-l> <C-w><Right>
 
 " better delete
 vnoremap x "_x
@@ -231,21 +221,16 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " navigatoer
 Plugin 'taglist.vim'
 " complete
-"Plugin 'ycm-core/YouCompleteMe'
-
+" EasyComplete 插件和 Dictionary 词表
+Plugin 'jayli/vim-easycomplete'
+Plugin 'jayli/vim-dictionary'
 " SnipMate 携带的四个插件
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-
 " Jedi
 Plugin 'davidhalter/jedi-vim'
-
-" EasyComplete 插件和 Dictionary 词表
-Plugin 'jayli/vim-easycomplete'
-Plugin 'jayli/vim-dictionary'
-
 " minibuf
 Plugin 'minibufexpl.vim'
 
