@@ -199,7 +199,6 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdcommenter'
 " easy shuffle files
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 " navigatoer
 Plugin 'taglist.vim'
 " complete
