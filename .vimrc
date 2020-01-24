@@ -95,6 +95,8 @@ syntax enable
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030
 set termencoding=utf-8
+" disable auto create .swap file
+set noswapfile
 
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
@@ -103,8 +105,6 @@ map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 
 "map <F5> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o %< && ./%<<CR>
 
 " better motion (by remap easymotion key)
-"map <space>j <Plug>(easymotion-w)
-"map <space>k <Plug>(easymotion-b)
 map <space> <Plug>(easymotion-s)
 map w <Plug>(easymotion-lineforward)
 map b <Plug>(easymotion-linebackward)
@@ -120,9 +120,9 @@ vmap / <plug>NERDCommenterToggle
 " **    - current dir & sub dir
 " **/*  - sub dir
 nnoremap q :cclose<cr>
-nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//gj %<cr> \| :copen<cr>
-nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//gj %<cr>
-nnoremap gf :vimgrep /<c-r>//gj **<cr> \| :copen<cr>
+nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//j %<cr> \| :copen<cr>
+nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//j %<cr>
+nnoremap gf :vimgrep /<c-r>//j **<cr> \| :copen<cr>
 
 " better ESC
 inoremap jk <Esc>
@@ -132,9 +132,6 @@ nnoremap U <C-r>
 
 " better vi (by nerdtree)
 nnoremap f :NERDTreeToggle<CR>
-
-" disable auto create .swap file
-set noswapfile
 
 " better delete
 vnoremap x "_x
@@ -162,21 +159,16 @@ nnoremap x "_x
 "
 " Split Window
 " :sp       - horizonal split
-" :vsp      - vertical split
-" :tabnew   - new tab split
+" :vs       - vertical split
+" :tabe     - new tab split
 
 """""""""""""""""""""""Vim-EasyComplete""""""""""""""""""""
 imap <Tab>   <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 let g:pmenu_scheme = 'dark'
 
-" minibuf
+"""""""""""""""""""""""minibuf""""""""""""""""""""
 let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1 
-"let g:miniBufExplMapCTabSwitchBufs = 1 
-"解决FileExplorer窗口变小问题  
-"let g:miniBufExplForceSyntaxEnable = 1  
-"let g:miniBufExplorerMoreThanOne=2
 
 """""""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""
 
