@@ -100,9 +100,21 @@ set noswapfile
 
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
+" Compiler Mappings based Filetype
+" C++ Compiler
+autocmd FileType cpp map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o out_%< && gdb %<<CR>
+" C Compiler
+"autocmd FileType c nnoremap <buffer> <C-i> :!gcc % && ./a.out <CR>
+" C++ Compiler
+"autocmd FileType cpp nnoremap <buffer> <C-i> :!g++ % && ./a.out <CR>
+" Python Interpreter
+"autocmd FileType python nnoremap <buffer> <C-i> :!python % <CR>
+" Bash script
+"autocmd FileType sh nnoremap <buffer> <C-i> :!sh % <CR>
+
 " fast compile & run
-map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o %< && gdb %<<CR>
-"map <F5> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o %< && ./%<<CR>
+map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o out_%< && gdb %<<CR>
+"map <F5> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o out_%< && ./%<<CR>
 
 " better motion (by remap easymotion key)
 map <space> <Plug>(easymotion-s)
