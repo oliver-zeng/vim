@@ -102,7 +102,7 @@ set noswapfile
 
 " Compiler Mappings based Filetype
 " C++ Compiler
-autocmd FileType cpp map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o out_%< && gdb %<<CR>
+autocmd FileType cpp map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 -g -std=c++11 % -o out_%< && gdb out_%<<CR>
 " C Compiler
 "autocmd FileType c nnoremap <buffer> <C-i> :!gcc % && ./a.out <CR>
 " C++ Compiler
