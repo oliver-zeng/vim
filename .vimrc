@@ -16,7 +16,8 @@
 
 " auto find tags path -> not work
 set tags+=./tags
-let Tlist_Ctags_Cmd='/usr/bin/ctags'
+"let Tlist_Ctags_Cmd='/usr/bin/ctags'
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let Tlist_Auto_Open=1
 let Tlist_Show_One_File=1
 let Tlist_Use_SingleClick=1
@@ -97,6 +98,8 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030
 set termencoding=utf-8
 " disable auto create .swap file
 set noswapfile
+" make backspace better
+set backspace=indent,eol,start
 
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
 
