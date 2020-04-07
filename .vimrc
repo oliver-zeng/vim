@@ -121,8 +121,12 @@ map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 
 
 " better motion (by remap easymotion key)
 map <space> <Plug>(easymotion-s)
-map w <Plug>(easymotion-lineforward)
-map b <Plug>(easymotion-linebackward)
+
+" insert mode motion
+imap h<tab> <esc>I
+imap l<tab> <esc>g_i<right>
+imap hh <left>
+imap ll <right>
 
 " easy comment (by NERDCommenter)
 vmap / <plug>NERDCommenterToggle
