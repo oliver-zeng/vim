@@ -123,6 +123,7 @@ map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 
 map <space> <Plug>(easymotion-s)
 
 " insert mode motion
+" 0 I g_ A
 imap h<tab> <esc>I
 imap l<tab> <esc>g_i<right>
 imap hh <left>
