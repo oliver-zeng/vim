@@ -8,6 +8,8 @@
 " $ mkdir ~/.vim/colors
 " $ mv ~/.vim/bundle/molokai/color/molokai.vim ~/.vim/colors
 " $ git clone https://github.com/oliver-zeng/vim.git ~/.vim
+" $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+" $ ~/.fzf/install
 " $ mv ~/.vim/vim/.vimrc ~/.vimrc
 " $ vi ~/.vimrc
 " $ :PluginInstall
@@ -72,6 +74,7 @@ set statusline+=\ %l/%L\ lines,\ %P
 set laststatus=2
 
 """"""""""""""""""""""""My Default Configs""""""""""""""""""""
+
 " set color theme
 colorscheme molokai
 " set clipboard as default register
@@ -121,16 +124,27 @@ map <s-d> <ESC>:w<CR> <ESC>:!g++ -fsanitize=address -fno-omit-frame-pointer -O1 
 
 " better motion (by remap easymotion key)
 map <space> <Plug>(easymotion-s)
-
-" insert mode motion
-" 0 I g_ A
-imap h<tab> <esc>I
-imap l<tab> <esc>g_i<right>
-imap hh <left>
-imap ll <right>
+map w <Plug>(easymotion-lineforward)
+map b <Plug>(easymotion-linebackward)
+inoremap h<Tab> <Left>
+inoremap j<Tab> <Down>
+inoremap k<Tab> <Up>
+inoremap l<Tab> <Right>
 
 " easy comment (by NERDCommenter)
 vmap / <plug>NERDCommenterToggle
+
+" fuzzy search
+"use $which fzf to set bash cmd path
+set rtp+=/home/parallels/.fzf/
+"nmap <C-p> :Files<CR>
+" :echo expand('%:t')       current file name
+" :echo expand('%:p')       current file full path
+" :echo expand('%:p:h')     current file direcotry without file name
+nmap <C-p> :Files %:p:h<CR>
+nmap <C-j> :Lines<CR>
+nmap <C-e> :Buffers<CR>
+let g:fzf_action = { 'ctrl-e': 'edit' }
 
 " better search (by remap vimgrep)
 " j     - do not jump to first match postion
@@ -142,7 +156,7 @@ vmap / <plug>NERDCommenterToggle
 nnoremap q :cclose<cr>
 nnoremap gq /<c-r>/<cr> \|'' \| :vimgrep /<c-r>//j %<cr> \| :copen<cr>
 nnoremap gd /<c-r>=expand("<cword>")<cr><cr> \|'' \| :vimgrep /<c-r>//j %<cr>
-nnoremap gf :vimgrep /<c-r>//j **<cr> \| :copen<cr>
+"nnoremap gf :vimgrep /<c-r>//j **<cr> \| :copen<cr>
 
 " better ESC
 inoremap jk <Esc>
@@ -151,7 +165,10 @@ inoremap jk <Esc>
 nnoremap U <C-r>
 
 " better vi (by nerdtree)
-nnoremap f :NERDTreeToggle<CR>
+" open
+nnoremap f :NERDTreeFind<CR>
+" close
+nnoremap F :NERDTreeToggle<CR>
 
 " better delete
 vnoremap x "_x
@@ -181,14 +198,22 @@ nnoremap x "_x
 " :sp       - horizonal split
 " :vs       - vertical split
 " :tabe     - new tab split
+" :Ve       - base current path, split new file
+" :Ex       - base current path, change current file
+
+" w3m (sudo apt install w3m)
+" :!w3m $HTTP
+" :r !w3m $HTTP [-dump]
 
 """""""""""""""""""""""Vim-EasyComplete""""""""""""""""""""
+
 imap <Tab>   <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 let g:pmenu_scheme = 'dark'
 
 """""""""""""""""""""""minibuf""""""""""""""""""""
-let g:miniBufExplMapWindowNavVim = 1
+
+"let g:miniBufExplMapWindowNavVim = 1
 
 """""""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""
 
@@ -211,6 +236,9 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdcommenter'
 " easy shuffle files
 Plugin 'scrooloose/nerdtree'
+" fuzzy search file
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 " navigatoer
 Plugin 'taglist.vim'
 " complete
@@ -224,8 +252,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 " Jedi
 Plugin 'davidhalter/jedi-vim'
-" minibuf
-Plugin 'minibufexpl.vim'
+ "minibuf
+"Plugin 'minibufexpl.vim'
 
 call vundle#end()
 filetype plugin indent on
