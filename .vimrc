@@ -78,8 +78,15 @@ set laststatus=2
 
 """"""""""""""""""""""""My Default Configs""""""""""""""""""""
 
-" set color theme
-colorscheme molokai
+" set color theme solarized
+set rtp+=~/.vim/bundle/vim-colors-solarized
+let g:solarized_termcolors=256
+set t_Co=256
+set background=dark
+colorscheme solarized
+" Powerline
+set laststatus=2 " 0 不显式状态行, 1 仅当窗口多于一个时显示状态行, 2 总是显式状态行
+set noshowmode " 显示你处在什么模式下面 
 " set clipboard as default register
 set clipboard=unnamedplus
 " high light cursor
@@ -255,6 +262,10 @@ call vundle#begin()
 " $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
 
+" solarized
+Plugin 'altercation/vim-colors-solarized'
+" Powerline
+Plugin 'Lokaltog/vim-powerline'
 " fast motion
 Plugin 'Lokaltog/vim-easymotion'
 " fast surround
