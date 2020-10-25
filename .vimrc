@@ -4,9 +4,6 @@
 " $ apt upgrade
 " $ apt install vim git ctags
 " $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" $ mkdir ~/.vim/colors
-" $ git clone https://github.com/tomasr/molokai.git ~/.vim/colors
-" $ mv ~/.vim/colors/molokai/color/molokai.vim ~/.vim/colors
 " $ git clone https://github.com/oliver-zeng/vim.git ~/.vim
 " $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 " $ ~/.fzf/install
@@ -20,13 +17,12 @@
 set tags+=./tags
 "let Tlist_Ctags_Cmd='/usr/bin/ctags'
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-map <C-n> : Tlist<CR>            " 绑定快捷键，手动打开
-"let Tlist_Auto_Open=1           " 在启动vim后，自动打开taglist窗口
-let Tlist_Use_Right_Window=0    " 1为让窗口显示在右边，0位左边
+let Tlist_Auto_Open=0
 let Tlist_Show_One_File=1
 let Tlist_Use_SingleClick=1
-let Tlist_File_Fold_Auto_Close=1" 同时显示多个文件中的tag，taglist只显示当前
-let Tlist_Exit_OnlyWindow=1     " 当taglist是最后一个分割窗口时，自动退出vim
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=0    " 1为让窗口显示在右边，0位左边
+map <C-n> : Tlist<CR> " 绑定快捷键，手动打开
 
 function! UpdateCtags()
     let curdir=getcwd()
@@ -78,34 +74,44 @@ set laststatus=2
 
 """"""""""""""""""""""""My Default Configs""""""""""""""""""""
 
-" set color theme solarized
-set rtp+=~/.vim/bundle/vim-colors-solarized
-let g:solarized_termcolors=256
-set t_Co=256
-set background=dark
-colorscheme solarized
 " Powerline
 set laststatus=2 " 0 不显式状态行, 1 仅当窗口多于一个时显示状态行, 2 总是显式状态行
-set noshowmode " 显示你处在什么模式下面 
+set noshowmode " 显示你处在什么模式下面
+
+" 记住文件上次编辑的位置
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+"不产生~备份文件
+set nobackup
+" 鼠标选择区域
+set mouse=a
+
+" set color theme
+set rtp+=~/.vim/bundle/vim-monokai
+colorscheme monokai
 " set clipboard as default register
 set clipboard=unnamedplus
+" 持久化 undo/redo
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir " 设置你的undo保存位置，你需要先 mkdir ~/.vim/undodir
 " high light cursor
 set cursorline
 " show Tab as >-, Trail Space as -
 set list listchars=tab:>-,trail:-
 " adjust the width of Tab
-set tabstop=4       "tab空格数"
-set shiftwidth=4    "缩进空格数"
+set tabstop=4
+set shiftwidth=4
 set expandtab
-" auto edit
-set autoread        " 自动载入
-set autowrite       " 自动把内容写回文件
-set nobackup        " 不产生~备份文件
+" set search highlight
+"set hlsearch
+" set search ignore case
+"set ignorecase
 " better search
 set hlsearch        " set search highlight
 set incsearch       " 在输入的同时开始查找
 set ignorecase      " set search ignore case
 set smartcase       " 如果搜索模式包含大小写字母，不使用ignorecase
+
 " set line number
 set nu
 " set syntax highlight
@@ -118,9 +124,13 @@ set termencoding=utf-8
 set noswapfile
 " make backspace better
 set backspace=indent,eol,start
-" 记住文件上次编辑的位置
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
 """""""""""""""""""""""""My Binding Key"""""""""""""""""""""""
+
+" open recent files
+nmap <C-o> :browse oldfiles<CR>
+" copy to clipboard
+vnoremap y "+y
 
 " Compiler Mappings based Filetype
 " C++ Compiler
@@ -154,12 +164,9 @@ nnoremap <C-l> <C-w><Right>
 " easy comment (by NERDCommenter)
 vmap / <plug>NERDCommenterToggle
 
-" open recent files
-nmap <C-o> :browse oldfiles<CR>
-
 " fuzzy search
 "use $which fzf to set bash cmd path
-set rtp+=~/.fzf=/
+set rtp+=~/.fzf/
 "nmap <C-p> :Files<CR>
 " :echo expand('%:t')       current file name
 " :echo expand('%:p')       current file full path
@@ -197,8 +204,7 @@ nnoremap F :NERDTreeToggle<CR>
 " better delete
 vnoremap x "_x
 nnoremap x "_x
-" copy to clipboard
-vnoremap y "+y
+
 """""""""""""""""""""""""""Better Remind""""""""""""""""""""""
 
 " Default Complete
@@ -250,6 +256,10 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0
 " 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
 
+"""""""""""""""""""""""minibuf""""""""""""""""""""
+
+"let g:miniBufExplMapWindowNavVim = 1
+
 """""""""""""""""""""""""""""Vundle"""""""""""""""""""""""""""
 
 set nocompatible
@@ -259,13 +269,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " vundle
-" $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
 
-" solarized
-Plugin 'altercation/vim-colors-solarized'
 " Powerline
 Plugin 'Lokaltog/vim-powerline'
+" ycm
+" cd ~/.vim/bundle/YouCompleteMe
+" git submodule update --init --recursive
+" python3 install.py --all
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'sickill/vim-monokai'
+
+
 " fast motion
 Plugin 'Lokaltog/vim-easymotion'
 " fast surround
@@ -277,29 +292,23 @@ Plugin 'scrooloose/nerdcommenter'
 " easy shuffle files
 Plugin 'scrooloose/nerdtree'
 " fuzzy search file
-" $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-" $ ~/.fzf/install
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plugin 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 " navigatoer
 Plugin 'taglist.vim'
 " complete
-" ycm
-" cd ~/.vim/bundle/YouCompleteMe
-" git submodule update --init --recursive
-" python3 install.py --all
-Plugin 'Valloric/YouCompleteMe'
-" instead (1~3)
-" 1. EasyComplete 插件和 Dictionary 词表
+" EasyComplete 插件和 Dictionary 词表
 "Plugin 'jayli/vim-easycomplete'
 "Plugin 'jayli/vim-dictionary'
-" 2. SnipMate 携带的四个插件
+" SnipMate 携带的四个插件
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
 "Plugin 'honza/vim-snippets'
-" 3. Jedi (complete for python)
+" Jedi
 "Plugin 'davidhalter/jedi-vim'
+ "minibuf
+"Plugin 'minibufexpl.vim'
 
 call vundle#end()
 filetype plugin indent on
