@@ -115,7 +115,7 @@ set smartcase       " 如果搜索模式包含大小写字母，不使用ignorec
 " set line number
 set nu
 " set syntax highlight
-syntax enable
+"syntax enable
 " support Chinese
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030
